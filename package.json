@@ -1,31 +1,34 @@
 {
-  "name": "36-1st-usopp-backend",
-  "version": "1.0.0",
-  "description": "",
-  "main": "app.js",
-  "scripts": {
-    "start": "nodemon app.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/wecode-bootcamp-korea/36-1st-Usopp-backend.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/wecode-bootcamp-korea/36-1st-Usopp-backend/issues"
-  },
-  "homepage": "https://github.com/wecode-bootcamp-korea/36-1st-Usopp-backend#readme",
-  "dependencies": {
-    "cors": "^2.8.5",
-    "dotenv": "^16.0.1",
-    "express": "^4.18.1",
-    "morgan": "^1.10.0",
-    "typeorm": "^0.3.7"
-  },
-  "devDependencies": {
-    "nodemon": "^2.0.19"
-  }
+    "name": "36-1st-usopp-backend",
+    "version": "1.0.0",
+    "description": "",
+    "main": "app.js",
+    "scripts": {
+        "start": "nodemon app.js",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/wecode-bootcamp-korea/36-1st-Usopp-backend.git"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/wecode-bootcamp-korea/36-1st-Usopp-backend/issues"
+    },
+    "homepage": "https://github.com/wecode-bootcamp-korea/36-1st-Usopp-backend#readme",
+    "dependencies": {
+        "cors": "^2.8.5",
+        "dotenv": "^16.0.1",
+        "express": "^4.18.1",
+        "fast-csv": "^4.3.6",
+        "morgan": "^1.10.0",
+        "mysql": "^2.18.1",
+        "mysql2": "^2.3.3",
+        "typeorm": "^0.3.7"
+    },
+    "devDependencies": {
+        "nodemon": "^2.0.19"
+    }
 }
