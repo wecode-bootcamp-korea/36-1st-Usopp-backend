@@ -5,7 +5,7 @@ CREATE TABLE orders_items (
     product_id INT NOT NULL,
     price DECIMAL NOT NULL,
     quantity INT NOT NULL,
-    orders_items_status_id INT NOT NULL,
+    order_item_status_id INT NOT NULL,
     shipment_id INT NOT NULL,
     CONSTRAINT orders_items_order_id_fkey FOREIGN KEY (order_id) REFERENCES orders(id) ON DELETE CASCADE,
     CONSTRAINT orders_items_product_id_fkey FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE CASCADE,
