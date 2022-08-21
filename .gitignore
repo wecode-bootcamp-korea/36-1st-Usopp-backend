@@ -5,3 +5,4 @@ db/schema.sql
 .DS_Store
 src/utils/users.csv
 src/utils/uploader.js
+src/utils/csv

@@ -1,5 +1,5 @@
 -- migrate:up
-CREATE DATABASE best_selling_products (
+CREATE TABLE best_selling_products (
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(50) NOT NULL,
     category_id INT NOT NULL,
