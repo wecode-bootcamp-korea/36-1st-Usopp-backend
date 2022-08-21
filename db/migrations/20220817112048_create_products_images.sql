@@ -1,7 +1,6 @@
 -- migrate:up
-CREATE TABLE main_category (
+CREATE TABLE products_images (
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(50) NOT NULL
+    url VARCHAR(1000) NOT NULL
 )
-
 -- migrate:down
