@@ -3,9 +3,11 @@ const userService = require("../services/userService");
 const emailCheck = async (req, res) => {
     try {
         const { email } = req.body;
+        
         if (!email) {
             return res.status(400).json({ message: "KEY_ERROR" });
         }
+
         await userService.emailCheck(email);
 
         res.status(201).json({ message: email });

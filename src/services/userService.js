@@ -5,12 +5,15 @@ const { validateEmail, validatePassword } = require("../utils/userValidators");
 
 const emailCheck = async (email) => {
     validateEmail(email);
+
     const userEmail = await userDao.userEmailCheck(email);
+
     if(Number(Object.values(userEmail[0])[0])) {
         const err = new Error('EMAIL_DUPLICATE')
         err.statusCode = 200;
         throw err;
     }
+
     if(!Number(Object.values(userEmail[0])[0])) {
         console.log(email)
         const err = new Error("EMAIL_NOT_EXISTS");
@@ -22,14 +25,17 @@ const emailCheck = async (email) => {
 const signUp = async (email, password, firstName, lastName) => {
     validateEmail(email);
     validatePassword(password);
+    
     const userEmail = await userDao.userEmailCheck(email);
-    if (Number(Object.values(userEmail[0])[0]) === 1) {
+
+    if (Number(Object.values(userEmail[0])[0])) {
         const err = new Error('EMAIL_DUPLICATE')
         err.statusCode = 409;
         throw err;
     }
 
     const hashedPassword = await bcrypt.hash(password, 12);
+
     const createUser = await userDao.createUser(
         email,
         hashedPassword,
@@ -40,16 +46,20 @@ const signUp = async (email, password, firstName, lastName) => {
 };
 
 const signIn = async (email, password) => {
+    
     const userEmail = await userDao.userEmailCheck(email);
-    if (!userEmail) {
+
+    if (!Number(Object.values(userEmail[0])[0])) {
         const err = new Error("EMAIL_OR_PASSWORD_IS_DIFFERENT");
         err.statusCode = 400;
         throw err;
     }
 
     const passwordCheck = await userDao.passwordCheck(email);
-    const userPasswor = await bcrypt.compare(password, passwordCheck[0].password);
-    if (!userPasswor) {
+
+    const userPassword = await bcrypt.compare(password, passwordCheck[0].password);
+    
+    if (!userPassword) {
         const err = new Error("EMAIL_OR_PASSWORD_IS_DIFFERENT");
         err.statusCode = 400;
         throw err;
