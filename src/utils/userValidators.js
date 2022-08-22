@@ -3,7 +3,6 @@ const validateEmail = (email) => {
         /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/
     );
 
-
     if (!emValidation.test(email)) {
         const err = new Error("EMAIL_OR_PASSWORD_NOT_AVAILABLE");
         err.statusCode = 400;

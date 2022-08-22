@@ -18,13 +18,13 @@ const emailCheck = async (req, res) => {
 
 const signUp = async (req, res) => {
     try {
-        const { email, password, fitstName, lastName } = req.body;
+        const { email, password, firstName, lastName } = req.body;
 
-        if (!email || !password || !fitstName || !lastName) {
+        if (!email || !password || !firstName || !lastName) {
             return res.status(400).json({ message: "KEY_ERROR" });
         }
 
-        await userService.signUp(email, password, fitstName, lastName );
+        await userService.signUp(email, password, firstName, lastName );
 
         res.status(201).json({ message: "USER_CREATE" });
     } catch (err) {

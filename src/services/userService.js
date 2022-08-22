@@ -19,7 +19,7 @@ const emailCheck = async (email) => {
     }
 };
 
-const signUp = async (email, password, fitstName, lastName) => {
+const signUp = async (email, password, firstName, lastName) => {
     validateEmail(email);
     validatePassword(password);
     const userEmail = await userDao.userEmailCheck(email);
@@ -33,7 +33,7 @@ const signUp = async (email, password, fitstName, lastName) => {
     const createUser = await userDao.createUser(
         email,
         hashedPassword,
-        fitstName, 
+        firstName, 
         lastName
         );
     return createUser;

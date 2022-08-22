@@ -1,7 +1,7 @@
 const database = require("./datasource");
 
 const userEmailCheck = async (email) => {
-    return await database.query(
+    const userEmail =  database.query(
         `
         SELECT EXISTS(
             SELECT 
@@ -10,6 +10,7 @@ const userEmailCheck = async (email) => {
             WHERE email = '${email}')
         `
     );
+    return userEmail;
 };
 
 const passwordCheck = async (email) => {
@@ -23,7 +24,7 @@ const passwordCheck = async (email) => {
     );
 };
 
-const createUser = async (email, password, fitstName, lastName) => {
+const createUser = async (email, password, firstName, lastName) => {
     return await database.query(
         `
         INSERT INTO users(
@@ -33,7 +34,7 @@ const createUser = async (email, password, fitstName, lastName) => {
             last_name
         ) VALUES ( ?, ?, ?, ? )
         `,
-        [email, password, fitstName, lastName]
+        [email, password, firstName, lastName]
     );
 };
 
