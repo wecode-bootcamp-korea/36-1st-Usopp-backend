@@ -1,5 +1,5 @@
 -- migrate:up
-CREATE DATABASE products (
+CREATE TABLE products (
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(30) NOT NULL,
     description VARCHAR(3000) NOT NULL,

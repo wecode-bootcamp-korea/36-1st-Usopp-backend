@@ -1,5 +1,5 @@
 -- migrate:up
-CREATE DATABASE category (
+CREATE TABLE category (
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(50) NOT NULL,
     main_category_id INT NOT NULL,
