@@ -6,12 +6,12 @@ const { validateEmail, validatePassword } = require("../utils/userValidators");
 const emailCheck = async (email) => {
     validateEmail(email);
     const userEmail = await userDao.userEmailCheck(email);
-    if(Number(Object.values(userEmail[0])[0]) === 1) {
+    if(Number(Object.values(userEmail[0])[0])) {
         const err = new Error('EMAIL_DUPLICATE')
         err.statusCode = 200;
         throw err;
     }
-    if(Number(Object.values(userEmail[0])[0]) === 0) {
+    if(!Number(Object.values(userEmail[0])[0])) {
         console.log(email)
         const err = new Error("EMAIL_NOT_EXISTS");
         err.statusCode = 200;
