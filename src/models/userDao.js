@@ -1,7 +1,7 @@
 const database = require("./datasource");
 
 const userEmailCheck = async (email) => {
-    const userEmail =  database.query(
+    return await database.query(
         `
         SELECT EXISTS(
             SELECT 
@@ -10,7 +10,6 @@ const userEmailCheck = async (email) => {
             WHERE email = '${email}')
         `
     );
-    return userEmail;
 };
 
 const passwordCheck = async (email) => {

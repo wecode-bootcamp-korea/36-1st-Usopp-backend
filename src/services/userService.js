@@ -1,6 +1,7 @@
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const userDao = require("../models/userDao");
+const BaseError = require("../middlewares/baseError");
 const { validateEmail, validatePassword } = require("../utils/userValidators");
 
 const emailCheck = async (email) => {
@@ -8,62 +9,41 @@ const emailCheck = async (email) => {
 
     const userEmail = await userDao.userEmailCheck(email);
 
-    if(Number(Object.values(userEmail[0])[0])) {
-        const err = new Error('EMAIL_DUPLICATE')
-        err.statusCode = 200;
-        throw err;
-    }
+    if (Number(Object.values(userEmail[0])[0])) throw new BaseError("EMAIL_DUPLICATE", 200)
 
-    if(!Number(Object.values(userEmail[0])[0])) {
-        console.log(email)
-        const err = new Error("EMAIL_NOT_EXISTS");
-        err.statusCode = 200;
-        throw err;
-    }
+    if (!Number(Object.values(userEmail[0])[0])) throw new BaseError("EMAIL_NOT_EXISTS", 200)
+    
 };
 
 const signUp = async (email, password, firstName, lastName) => {
     validateEmail(email);
     validatePassword(password);
-    
+
     const userEmail = await userDao.userEmailCheck(email);
 
-    if (Number(Object.values(userEmail[0])[0])) {
-        const err = new Error('EMAIL_DUPLICATE')
-        err.statusCode = 409;
-        throw err;
-    }
+    if (Number(Object.values(userEmail[0])[0])) throw new BaseError("EMAIL_DUPLICATE", 200)
 
     const hashedPassword = await bcrypt.hash(password, 12);
 
     const createUser = await userDao.createUser(
         email,
         hashedPassword,
-        firstName, 
+        firstName,
         lastName
-        );
+    );
     return createUser;
 };
 
 const signIn = async (email, password) => {
-    
     const userEmail = await userDao.userEmailCheck(email);
 
-    if (!Number(Object.values(userEmail[0])[0])) {
-        const err = new Error("EMAIL_OR_PASSWORD_IS_DIFFERENT");
-        err.statusCode = 400;
-        throw err;
-    }
+    if (!Number(Object.values(userEmail[0])[0])) throw new BaseError("EMAIL_OR_PASSWORD_IS_DIFFERENT", 200)
 
     const passwordCheck = await userDao.passwordCheck(email);
 
     const userPassword = await bcrypt.compare(password, passwordCheck[0].password);
-    
-    if (!userPassword) {
-        const err = new Error("EMAIL_OR_PASSWORD_IS_DIFFERENT");
-        err.statusCode = 400;
-        throw err;
-    }
+
+    if (!userPassword) throw new BaseError("EMAIL_OR_PASSWORD_IS_DIFFERENT", 200)
 
     const accessToken = jwt.sign({ email }, process.env.JWT_SECRET);
 
