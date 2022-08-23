@@ -1,13 +1,11 @@
 const database = require("./dataSource.js");
 
-const editCart = async (userId, productId, quantity) => {
+const deleteCart = async (cartId) => {
   try {
     return await database.query(`
-      UPDATE carts 
-      SET quantity = ? 
-      WHERE user_id = ${userId} 
-      AND product_id = ${productId}`,
-      [quantity]
+        DELETE FROM carts
+        WHERE carts.id = ${cartId}`,
+        [cartId]
     );
   } catch (err) {
     const error = new Error("INVALID_DATA_INPUT");
@@ -17,5 +15,5 @@ const editCart = async (userId, productId, quantity) => {
 };
 
 module.exports = {
-  editCart,
+  deleteCart,
 };

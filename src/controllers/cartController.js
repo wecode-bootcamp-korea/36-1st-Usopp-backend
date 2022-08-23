@@ -1,13 +1,13 @@
 const cartService = require("../services/cartService");
 
-const editCart = async (req, res) => {
+const deleteCart = async (req, res) => {
   try {
-    const { userId, productId, quantity } = req.body;
+    const { cartId } = req.body;
 
-    await cartService.editCart(userId, productId, quantity);
+    await cartService.deleteCart(cartId);
 
-    res.status(201).json({ message: "QUANTITY CHANGED!" });
-
+    res.status(201).json({ message: "CART ITEM DELETED!" });
+    
   } catch (err) {
     console.log(err);
     return res.status(err.statusCode || 500).json({ message: err.message });
@@ -15,5 +15,5 @@ const editCart = async (req, res) => {
 };
 
 module.exports = {
-  editCart,
+  deleteCart,
 };
