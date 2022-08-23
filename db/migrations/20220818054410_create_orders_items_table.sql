@@ -9,7 +9,7 @@ CREATE TABLE orders_items (
     shipment_id INT NOT NULL,
     CONSTRAINT orders_items_order_id_fkey FOREIGN KEY (order_id) REFERENCES orders(id) ON DELETE CASCADE,
     CONSTRAINT orders_items_product_id_fkey FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE CASCADE,
-    CONSTRAINT orders_items_shipment_id_fkey FOREIGN KEY (shipment_id) REFERENCES shipments(id)
-    CONSTRAINT orders_items_orders_items_status_id_fkey FOREIGN KEY (orders_items_status_id) REFERENCES orders_items_status(id)
+    CONSTRAINT orders_items_shipment_id_fkey FOREIGN KEY (shipment_id) REFERENCES shipments(id),
+    CONSTRAINT orders_items_orders_items_status_id_fkey FOREIGN KEY (order_item_status_id) REFERENCES orders_items_status(id)
 );
 -- migrate:down

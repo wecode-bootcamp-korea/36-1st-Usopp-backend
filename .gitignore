@@ -3,5 +3,5 @@ node_modules/
 db/schema.sql
 .vscode
 .DS_Store
-src/utils/users.csv
+src/utils/csv/
 src/utils/uploader.js
