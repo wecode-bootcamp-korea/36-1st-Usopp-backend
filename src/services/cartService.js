@@ -1,11 +1,7 @@
-const database = require("typeorm");
 const cartDao = require("../models/cartDao");
 
-const cart = async (userId, productId, quantity) => {
-  const cart = await cartDao.cart(userId, productId, quantity);
-  return cart;
-};
+const createCarts = async (userId, productId, quantity) => await cartDao.createCarts(userId, productId, quantity);
 
 module.exports = {
-  cart,
+  createCarts,
 };

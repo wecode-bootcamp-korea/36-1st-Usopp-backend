@@ -1,6 +1,7 @@
 const database = require("./dataSource.js");
+const baseError = require("../middlewares/baseError")
 
-const cart = async (userId, productId, quantity) => {
+const createCarts = async (userId, productId, quantity) => {
   try {
     return await database.query(`
         INSERT INTO carts (
@@ -11,12 +12,10 @@ const cart = async (userId, productId, quantity) => {
       [userId, productId, quantity]
     );
   } catch (err) {
-    const error = new Error("INVALID_DATA_INPUT");
-    error.statusCode = 500;
-    throw error;
+    throw new baseError("INVALID_DATA_INPUT");
   }
 };
 
 module.exports = {
-  cart,
+  createCarts,
 };
