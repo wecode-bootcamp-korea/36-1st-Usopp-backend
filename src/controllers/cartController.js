@@ -1,16 +1,12 @@
 const cartService = require("../services/cartService");
 
-const cart = async (req, res) => {
+const readCart = async (req, res) => {
   try {
-    const { userId, productId, quantity } = req.body;
+    const { productId, size, quantity, price, userId } = req.body;
 
-    if (!userId || !productId || !quantity) {
-      return res.status(400).json({ message: "KEY_ERROR" });
-    }
+    const cart = await cartService.readCart(productId, size, quantity, price, userId);
 
-    await cartService.cart(userId, productId, quantity);
-
-    res.status(201).json({ message: "NEW CART CREATED!" });
+    res.status(200).json(cart);
 
   } catch (err) {
     console.log(err);
@@ -19,5 +15,5 @@ const cart = async (req, res) => {
 };
 
 module.exports = {
-  cart,
+  readCart,
 };
