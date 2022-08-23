@@ -1,12 +1,12 @@
 const cartService = require("../services/cartService");
 
-const readCart = async (req, res) => {
+const editCart = async (req, res) => {
   try {
-    const { productId, size, quantity, price, userId } = req.body;
+    const { userId, productId, quantity } = req.body;
 
-    const cart = await cartService.readCart(productId, size, quantity, price, userId);
+    await cartService.editCart(userId, productId, quantity);
 
-    res.status(200).json(cart);
+    res.status(201).json({ message: "QUANTITY CHANGED!" });
 
   } catch (err) {
     console.log(err);
@@ -15,5 +15,5 @@ const readCart = async (req, res) => {
 };
 
 module.exports = {
-  readCart,
+  editCart,
 };
