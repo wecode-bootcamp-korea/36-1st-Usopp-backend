@@ -43,7 +43,7 @@ const signIn = async (email, password) => {
     if (!userPassword) throw new BaseError("EMAIL_OR_PASSWORD_IS_DIFFERENT", 200)
 
     const accessToken = jwt.sign({ sub: user.userId, email: user.email }, process.env.JWT_SECRET);
-    
+
     return accessToken;
 };
 module.exports = {

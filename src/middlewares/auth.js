@@ -2,6 +2,7 @@ const jwt = require("jsonwebtoken");
 const secretKey = process.env.JWT_SECRET;
 
 const validateToken = async (req, res, next) => {
+
   try {
     const token = await req.header("Authorization");
 
