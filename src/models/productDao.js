@@ -1,8 +1,8 @@
 const { database } = require('./datasource');
 
-const productRouter = async () => {
+const productAllList = async () => {
     try {
-      return await database.query(
+      const results = await database.query(
         `SELECT  
         c.id AS cid,
         c.name as cname,
@@ -36,12 +36,13 @@ const productRouter = async () => {
         from category c
           `
       );
+      return results
     } catch (err) {
         throw new BaseError("MAIN_DOES_NOT_EXIST", 500);
     }
   };
 
-  const productCategoryRouter = async (categoryId) => {
+  const productCategoryList = async (categoryId) => {
     try { 
       return await database.query(
         `SELECT  
@@ -82,7 +83,7 @@ const productRouter = async () => {
     }
   };
 
-  const productAromaRouter = async (aromasId) => {
+  const productAromaList = async (aromasId) => {
     try { 
       return await database.query(
         `SELECT  
@@ -112,7 +113,7 @@ const productRouter = async () => {
     }
   };
 
-  const productDetailRouter = async (productId) => {
+  const productDetailPage = async (productId) => {
     try {
       return await database.query(
         `SELECT
@@ -146,8 +147,8 @@ const productRouter = async () => {
   };
 
   module.exports = { 
-    productRouter,
-    productCategoryRouter,
-    productAromaRouter,
-    productDetailRouter
+    productAllList,
+    productCategoryList,
+    productAromaList,
+    productDetailPage
   };

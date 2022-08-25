@@ -1,42 +1,42 @@
 const productDao = require("../models/productDao");
 
-const productRouter = async () => {
-  const productRouter = await productDao.productRouter();
-  for (const productMain of productRouter) {
+const productAllList = async () => {
+  const productAllList = await productDao.productAllList();
+  for (const productMain of productAllList) {
     productMain.product = JSON.parse(productMain.product)
     productMain.setProduct = JSON.parse(productMain.setProduct);
   }
-  return productRouter;
+  return productAllList;
 };
 
-const productCategoryRouter = async (categoryStr) => {
-  const productCategories = await productDao.productCategoryRouter(categoryStr);
-  for (const productCategory of productCategories) {
+const productCategoryList = async (categoryId) => {
+  const productCategoryList = await productDao.productCategoryList(categoryId);
+  for (const productCategory of productCategoryList) {
     productCategory.product = JSON.parse(productCategory.product)
     productCategory.setProduct = JSON.parse(productCategory.setProduct);
   }
-  return productCategories;
+  return productCategoryList;
 };
 
-const productAromaRouter = async (aromasId) => {
-  const productAromaRouter = await productDao.productAromaRouter(aromasId);
-  for (const productAroma of productAromaRouter) {
+const productAromaList = async (aromasId) => {
+  const productAromaList = await productDao.productAromaList(aromasId);
+  for (const productAroma of productAromaList) {
     productAroma.product = JSON.parse(productAroma.product)
   }
-  return productAromaRouter;
+  return productAromaList;
 };
 
-const productDetailRouter = async (productId) => {
-  const productDetail = await productDao.productDetailRouter(productId);
-  for (const productAroma of productDetail) {
+const productDetailPage = async (productId) => {
+  const productDetailPage = await productDao.productDetailPage(productId);
+  for (const productAroma of productDetailPage) {
     productAroma.aromas = JSON.parse(productAroma.aromas)
   }
-  return productDetail;
+  return productDetailPage;
 };
 
 module.exports = {
-  productRouter,
-  productCategoryRouter,
-  productAromaRouter,
-  productDetailRouter
+  productAllList,
+  productCategoryList,
+  productAromaList,
+  productDetailPage
 };

@@ -1,32 +1,31 @@
 const productService = require("../services/productService");
 
-const productRouter = async (req, res) => {
-    const Main = await productService.productRouter();
-    res.status(200).json(Main);
+const productAllList = async (req, res) => {
+    const product = await productService.productAllList();
+    res.status(200).json(product);
 };
 
-const productCategoryRouter = async (req, res) => {
-    const categoryStr = req.params.categoryStr;
-    const category = await productService.productCategoryRouter(categoryStr);
+const productCategoryList = async (req, res) => {
+    const categoryId = req.params.categoryStr;
+    const category = await productService.productCategoryList(categoryId);
     res.status(200).json(category);
-    console.log(category)
 };
 
-const productAromaRouter = async (req, res) => {
+const productAromaList = async (req, res) => {
     const aromasId  = req.params.aromasId;
-    const aromas = await productService.productAromaRouter(aromasId);
+    const aromas = await productService.productAromaList(aromasId);
     res.status(200).json(aromas);es.status(err.statusCode || 500).json({ message: err.message });
 };
 
-const productDetailRouter = async (req, res) => {
+const productDetailPage = async (req, res) => {
     const {productId}= req.params;
-    const productDetail = await productService.productDetailRouter(productId);
+    const productDetail = await productService.productDetailPage(productId);
     res.status(200).json(productDetail);
 };
 
 module.exports = {
-  productRouter,
-  productCategoryRouter,
-  productAromaRouter,
-  productDetailRouter
+  productAllList,
+  productCategoryList,
+  productAromaList,
+  productDetailPage
 };

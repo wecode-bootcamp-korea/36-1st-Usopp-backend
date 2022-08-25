@@ -4,10 +4,10 @@ const errorHandler = require("../middlewares/errorHandler");
 
 const router = express.Router();
 
-router.get("/", errorHandler(productController.productRouter));
-router.get("/aroma/:aromasId", errorHandler(productController.productAromaRouter));
-router.get("/:categoryStr", errorHandler(productController.productCategoryRouter));
-router.get("/detail/:productId", errorHandler(productController.productDetailRouter));
+router.get("/main", errorHandler(productController.productAllList));
+router.get("/main/aroma/:aromasId", errorHandler(productController.productAromaList));
+router.get("/main/:categoryStr", errorHandler(productController.productCategoryList));
+router.get("/main/detail/:productId", errorHandler(productController.productDetailPage));
 
 module.exports = {
     router
