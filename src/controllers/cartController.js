@@ -1,6 +1,27 @@
 const cartService = require("../services/cartService");
 
-const editCart = async (req, res) => {
+const createCarts = async (req, res) => {
+  const { productId, quantity } = req.body;
+  const userId = req.user;
+
+  if (!productId) {
+    return res.status(400).json({ message: "KEY_ERROR" });
+  }
+  
+  await cartService.createCarts(userId.sub, productId, quantity);
+
+  res.status(201).json({ message: "NEW_CART_CREATED!" });
+};
+
+const readCarts = async (req, res) => {
+  const userId = req.user;
+
+  const cart = await cartService.readCarts(userId.sub);
+
+  res.status(200).json(cart);
+};
+
+const editCarts = async (req, res) => {
   try {
     const { userId, productId, quantity } = req.body;
 
@@ -15,5 +36,7 @@ const editCart = async (req, res) => {
 };
 
 module.exports = {
-  editCart,
+  createCarts,
+  readCarts,
+  editCarts,
 };
