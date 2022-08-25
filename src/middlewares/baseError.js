@@ -8,3 +8,4 @@ module.exports = class BaseError extends Error {
 		Error.captureStackTrace(this);
 	}
 }
+

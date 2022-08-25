@@ -1,7 +1,8 @@
 const cartDao = require("../models/cartDao");
+const BaseError = require("../middlewares/baseError");
 
-const createCarts = async (userId, productId, quantity) => await cartDao.createCarts(userId, productId, quantity);
+const deleteCarts = async (cartId) => await cartDao.deleteCarts(cartId);
 
 module.exports = {
-  createCarts,
+  deleteCarts,
 };

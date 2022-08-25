@@ -1,21 +1,20 @@
+const BaseError = require("../middlewares/baseError.js");
 const database = require("./dataSource.js");
 const baseError = require("../middlewares/baseError")
-
-const createCarts = async (userId, productId, quantity) => {
+  
+const deleteCarts = async (cartId) => {
   try {
-    return await database.query(`
-        INSERT INTO carts (
-            user_id,
-            product_id,
-            quantity
-        ) VALUES (?, ?, ?);`,
-      [userId, productId, quantity]
+    return await database.query(
+      `
+        DELETE FROM carts
+        WHERE carts.id = ${cartId}`,
+      [cartId]
     );
   } catch (err) {
-    throw new baseError("INVALID_DATA_INPUT");
+    throw new BaseError("INVALID_DATA_INPUT", 500);
   }
 };
 
 module.exports = {
-  createCarts,
+  deleteCarts,
 };
