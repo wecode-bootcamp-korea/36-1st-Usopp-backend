@@ -2,11 +2,13 @@ const database = require("typeorm");
 const cartDao = require("../models/cartDao");
 
 const createCarts = async (userId, productId, quantity) => {
-  const [checkCart] = await cartDao.existCart(userId, productId);
+  const isExists = await cartDao.existCart(userId, productId);
 
-  if (Number(Object.values(checkCart)) === 1) {
-    return await cartDao.plusQuantity(userId, productId);
-  }
+  console.log(isExists)
+  console.log(userId)
+  console.log(productId)
+
+  if (isExists) return await cartDao.plusQuantity(userId, productId);
 
   return await cartDao.createCarts(userId, productId, quantity);
 };

@@ -8,8 +8,9 @@ const createCarts = async (userId, productId) => {
         user_id,
         product_id,
         quantity
-      ) VALUES (${userId}", "${productId}", 1);`
+      ) VALUES ("${userId}", "${productId}", 1);`
     );
+
     return result;
   } catch (err) {
     throw new BaseError("INVALID_DATA_INPUT", 500);
@@ -19,15 +20,11 @@ const createCarts = async (userId, productId) => {
 const existCart = async (userId, productId) => {
   try {
     const result = await database.query(`
-      SELECT EXISTS
-        (SELECT
-          user_id,
-          product_id
-        FROM carts
-        WHERE user_id = ${userId}
-        AND product_id = ${productId})`
+      SELECT EXISTS (SELECT * FROM carts WHERE user_id = ${userId} AND product_id = ${productId}) AS isExists `
     );
-    return result;
+    
+    return +result[0].isExists;
+
   } catch (err) {
     throw new BaseError("INVALID_DATA_INPUT", 500);
   }
