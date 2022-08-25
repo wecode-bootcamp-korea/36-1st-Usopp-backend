@@ -1,4 +1,4 @@
-const productAromaFilterService = require("../services/productAromaFilterServices");
+const productAromaFilterService = require("../services/productAromaFilterService");
 const BaseError = require("../middlewares/baseError");
 
 const productAromaFilter = async (req, res) => {
@@ -8,7 +8,7 @@ const productAromaFilter = async (req, res) => {
 
     const productAroma = await productAromaFilterService.productAroma(aromaId);
 
-    res.status(200).json({ productAroma });
+    res.status(200).json({ product: productAroma });
 };
 
 module.exports = {

@@ -10,5 +10,5 @@ router.post("/signup", errorHandler(userController.signUp));
 router.post("/signin", errorHandler(userController.signIn));
 
 module.exports = {
-    router,
+    router
 };

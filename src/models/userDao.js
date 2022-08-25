@@ -1,5 +1,5 @@
 const BaseError = require("../middlewares/baseError");
-const database = require("./datasource");
+const database = require("./dataSource");
 
 const userEmailCheck = async (email) => {
     try {

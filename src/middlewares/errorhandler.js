@@ -3,6 +3,7 @@ const asyncWrap = (asyncController) => {
         try {
             await asyncController(req, res);
         } catch (err) {
+            console.log(err.stack)
             if (err.message === "INVALID_DATA_INPUT") {
                 res.status(err.statusCode ? err.statusCode : 500).json({
                     message: err.message,
