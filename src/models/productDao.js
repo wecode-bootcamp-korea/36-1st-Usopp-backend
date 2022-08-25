@@ -1,4 +1,4 @@
-const { database } = require('./datasource');
+const { database } = require('./dataSource');
 
 const productAllList = async () => {
     try {

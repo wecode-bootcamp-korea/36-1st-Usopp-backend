@@ -1,4 +1,4 @@
-const database = require("./datasource");
+const database = require("./dataSource");
 
 const userEmailCheck = async (email) => {
     return await database.query(
