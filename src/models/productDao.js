@@ -2,7 +2,7 @@ const { database } = require('./datasource');
 
 const productAllList = async () => {
     try {
-      const results = await database.query(
+        return await database.query(
         `SELECT  
         c.id AS cid,
         c.name as cname,
@@ -36,7 +36,6 @@ const productAllList = async () => {
         from category c
           `
       );
-      return results
     } catch (err) {
         throw new BaseError("MAIN_DOES_NOT_EXIST", 500);
     }

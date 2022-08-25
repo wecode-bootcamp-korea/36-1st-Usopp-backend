@@ -15,7 +15,7 @@ database
     console.log("Data source has been initialized!");
   })
   .catch((err) => {
-    console.error("Error during Data Source initialization", err);
+    console.error("Error occurred during Data Source initialization", err);
     database.destroy();
   });
 

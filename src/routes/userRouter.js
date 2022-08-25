@@ -1,6 +1,6 @@
 const express = require("express");
 const userController = require("../controllers/userController");
-const errorHandler = require("../middlewares/errorHandler");
+const errorHandler = require("../middlewares/errorHndler");
 
 const router = express.Router();
 
