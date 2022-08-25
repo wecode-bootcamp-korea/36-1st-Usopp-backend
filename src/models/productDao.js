@@ -1,4 +1,5 @@
 const { database } = require('./dataSource');
+const BaseError = require('../middlewares/baseError');
 
 const productAllList = async () => {
     try {
@@ -126,6 +127,7 @@ const productAllList = async () => {
         p.ingredient,
         p.detailed_ingredient,
         pi.url,
+        p.size,
         (SELECT
            JSON_ARRAYAGG(
            a.name

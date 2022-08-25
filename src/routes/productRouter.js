@@ -6,7 +6,7 @@ const router = express.Router();
 
 router.get("/main", errorHandler(productController.productAllList));
 router.get("/main/aroma/:aromasId", errorHandler(productController.productAromaList));
-router.get("/main/:categoryStr", errorHandler(productController.productCategoryList));
+router.get("/main/:categoryId", errorHandler(productController.productCategoryList));
 router.get("/main/detail/:productId", errorHandler(productController.productDetailPage));
 
 module.exports = {

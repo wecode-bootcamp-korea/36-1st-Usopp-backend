@@ -8,5 +8,5 @@ const readCarts = async (req, res) => {
 };
 
 module.exports = {
-  readCarts,
+  readCarts
 };

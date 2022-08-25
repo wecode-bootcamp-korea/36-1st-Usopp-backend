@@ -1,4 +1,5 @@
 const productService = require("../services/productService");
+const BaseError = require("../middlewares/baseError");
 
 const productAllList = async (req, res) => {
     const product = await productService.productAllList();
@@ -6,7 +7,7 @@ const productAllList = async (req, res) => {
 };
 
 const productCategoryList = async (req, res) => {
-    const categoryId = req.params.categoryStr;
+    const {categoryId} = req.params;
     const category = await productService.productCategoryList(categoryId);
     res.status(200).json(category);
 };
