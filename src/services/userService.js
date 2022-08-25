@@ -35,9 +35,9 @@ const signUp = async (email, password, firstName, lastName) => {
 };
 
 const signIn = async (email, password) => {
-    const userEmail = await userDao.userEmailCheck(email);
-
-    if (!Number(Object.values(userEmail[0])[0])) throw new BaseError("EMAIL_OR_PASSWORD_IS_DIFFERENT", 200)
+    const user = await userDao.userLogin(email);
+    
+    if (!Number(Object.values(user)[0])) throw new BaseError("EMAIL_OR_PASSWORD_IS_DIFFERENT", 200)
 
     const passwordCheck = await userDao.passwordCheck(email);
 
@@ -45,7 +45,7 @@ const signIn = async (email, password) => {
 
     if (!userPassword) throw new BaseError("EMAIL_OR_PASSWORD_IS_DIFFERENT", 200)
 
-    const accessToken = jwt.sign({ email }, process.env.JWT_SECRET);
+    const accessToken = jwt.sign({ sub: user.userId, email: user.email }, process.env.JWT_SECRET);
 
     return accessToken;
 };
