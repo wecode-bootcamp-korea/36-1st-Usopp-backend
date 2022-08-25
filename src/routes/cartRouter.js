@@ -1,9 +1,11 @@
 const express = require("express");
-const cartController = require("../controllers/cartController");
 const router = express.Router();
-const errorHandler = require("../middlewares/errorHandler");
 
-router.post("/", errorHandler(cartController.createCarts));
+const cartController = require("../controllers/cartController");
+const errorhandler = require("../middlewares/errorHandler");
+const auth = require("../middlewares/auth");
+
+router.post("/", auth.validateToken, errorhandler(cartController.createCarts));
 
 module.exports = {
   router,

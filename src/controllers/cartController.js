@@ -1,15 +1,16 @@
 const cartService = require("../services/cartService");
-const baseError = require("../middlewares/baseError");
 
 const createCarts = async (req, res) => {
-    const { userId, productId, quantity } = req.body;
+  const { productId, quantity } = req.body;
+  const userId = req.user;
 
-    if (!userId || !productId || !quantity) 
-        throw new baseError("KEY_ERROR", 400);
+  if (!productId) {
+    return res.status(400).json({ message: "KEY_ERROR" });
+  }
+  
+  await cartService.createCarts(userId.sub, productId, quantity);
 
-    await cartService.createCarts(userId, productId, quantity);
-
-    res.status(201).json({ message: "NEW CART CREATED!" });
+  res.status(201).json({ message: "NEW_CART_CREATED!" });
 };
 
 module.exports = {
