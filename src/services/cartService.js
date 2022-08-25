@@ -9,12 +9,11 @@ const createCarts = async (userId, productId, quantity) => {
   return await cartDao.createCarts(userId, productId, quantity);
 };
 
-const readCart = async (productId, size, quantity, price, userId) => {
-  const readCart = await cartDao.readCart(productId, size, quantity, price, userId);
-  return readCart;
+const readCarts = async (userId) => {
+  return await cartDao.readCarts(userId);
 };
 
 module.exports = {
-  readCart,
   createCarts,
+  readCarts,
 };

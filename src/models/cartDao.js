@@ -43,28 +43,28 @@ const plusQuantity = async (userId, productId) => {
   }
 }
 
-const readCart = async (productId, size, quantity, price, userId) => {
+const readCarts = async (userId) => {
   try {
     return await database.query(`
         SELECT 
-            c.product_id, 
-            p.size, 
-            c.quantity, 
-            p.price 
+          p.size,
+          p.price,
+          p.name,
+          c.product_id, 
+          c.quantity 
         FROM carts c 
         INNER JOIN products p 
         ON c.product_id = p.id
-        WHERE c.user_id = ${userId}`,
-      [productId, size, quantity, price]
+        WHERE c.user_id = "${userId}"`
     );
   } catch (err) {
     throw new BaseError("INVALID_DATA_INPUT", 500);
   }
-}
+};
 
 module.exports = {
-  readCart,
   createCarts,
   existCart,
   plusQuantity,
+  readCarts,
 };
