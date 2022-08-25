@@ -1,12 +1,11 @@
+const BaseError = require("../middlewares/baseError");
 const cartService = require("../services/cartService");
 
 const createCarts = async (req, res) => {
   const { productId, quantity } = req.body;
   const userId = req.user;
 
-  if (!productId) {
-    return res.status(400).json({ message: "KEY_ERROR" });
-  }
+  if (!productId) throw new BaseError("KEY_ERROR", 400);
   
   await cartService.createCarts(userId.sub, productId, quantity);
 
@@ -22,17 +21,12 @@ const readCarts = async (req, res) => {
 };
 
 const editCarts = async (req, res) => {
-  try {
-    const { userId, productId, quantity } = req.body;
+  const { productId, quantity } = req.body;
+  const userId = req.user;
 
-    await cartService.editCart(userId, productId, quantity);
+  await cartService.editCarts(userId.sub, productId, quantity);
 
-    res.status(201).json({ message: "QUANTITY CHANGED!" });
-
-  } catch (err) {
-    console.log(err);
-    return res.status(err.statusCode || 500).json({ message: err.message });
-  }
+  res.status(201).json({ message: "CART_EDITED!" });
 };
 
 module.exports = {

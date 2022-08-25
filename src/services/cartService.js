@@ -1,8 +1,9 @@
 const database = require("typeorm");
 const cartDao = require("../models/cartDao");
+const BaseError = require("../middlewares/baseError");
 
 const createCarts = async (userId, productId, quantity) => {
-  const isExists = await cartDao.existCart(userId, productId);
+  const isExists = await cartDao.existCarts(userId, productId);
 
   if (isExists) return await cartDao.plusQuantity(userId, productId);
 
@@ -14,13 +15,10 @@ const readCarts = async (userId) => {
 };
 
 const editCarts = async (userId, productId, quantity) => {
-  const editCart = await cartDao.editCart(userId, productId, quantity);
+  const editCart = await cartDao.editCarts(userId, productId, quantity);
 
-  if (quantity <= 0 || quantity > 5) {
-    const err = new Error("INVALID_QUANTITY");
-    err.statusCode = 400;
-    throw err;
-  }
+  if (quantity <= 0 || quantity > 5) throw new BaseError("INVALID_QUANTITY", 400);
+
   return editCart;
 };
 
