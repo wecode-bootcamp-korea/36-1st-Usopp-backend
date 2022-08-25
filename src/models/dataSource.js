@@ -12,17 +12,11 @@ const database = new DataSource({
 database
   .initialize()
   .then(() => {
-<<<<<<< HEAD
-    console.log("Data source has been initialized!");
-=======
     console.log("Data Source has been initialized!");
->>>>>>> main
   })
   .catch((err) => {
     console.error("Error occurred during Data Source initialization", err);
     database.destroy();
   });
 
-module.exports = {
-  database
-};
+module.exports = database;
