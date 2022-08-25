@@ -70,7 +70,7 @@ const editCarts = async (userId, productId, quantity) => {
       SET quantity = ?
       WHERE user_id = "${userId}"
       AND product_id = ${productId}`,
-      [quantity, userId, productId]
+      [quantity]
     );
   } catch (err) {
     throw new BaseError("INVALID_DATA_INPUT", 500);
