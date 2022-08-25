@@ -1,10 +1,10 @@
 const BaseError = require("../middlewares/baseError");
 const database = require("./datasource");
 
-const productAromaFilter = async(aromaId) => {
-    try{
-    return await database.query(
-        `
+const productAromaFilter = async (aromaId) => {
+    try {
+        return await database.query(
+            `
         SELECT 
         p.name, 
         p.price, 
@@ -18,13 +18,13 @@ const productAromaFilter = async(aromaId) => {
     INNER JOIN aromas a ON a.id = pa.aroma_id
     INNER JOIN products_images pi ON pi.id = p.product_image_id
     WHERE a.id = '${aromaId}'
-        `,
-    );
+        `
+        );
     } catch (err) {
-        throw new BaseError("INVALD_NOT_INPUT", 500)
+        throw new BaseError("INVALID_NOT_INPUT", 500);
     }
-}
+};
 
 module.exports = {
-    productAromaFilter
-}
+    productAromaFilter,
+};
