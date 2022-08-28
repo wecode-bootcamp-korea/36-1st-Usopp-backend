@@ -14,6 +14,10 @@
    |BACK|이상우|로그인 & 회원가입 구현.|
    |BACK|이상엽|사이트 페이지 구현.|
 
+
+[FRONTEND GITHUB](https://github.com/wecode-bootcamp-korea/36-1st-Usopp-frontend)
+
+[BACKEND GITHUB](https://github.com/wecode-bootcamp-korea/36-1st-Usopp-backend)
 # <br />
 
 
